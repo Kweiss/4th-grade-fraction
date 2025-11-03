@@ -59,9 +59,9 @@ export const Instruction: React.FC<InstructionProps> = ({ method, onComplete }) 
       case 'common-denominator':
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-800">Method 2: Common Denominators</h3>
+            <h3 className="text-2xl font-bold text-gray-800">Method 2: Making the Bottom Numbers the Same</h3>
             <p className="text-lg text-gray-700">
-              Make the denominators the same, then compare the numerators.
+              Change both fractions so they have the same bottom number (denominator). Then you can easily compare the top numbers (numerators)!
             </p>
             
             {step >= 1 && (
@@ -75,19 +75,22 @@ export const Instruction: React.FC<InstructionProps> = ({ method, onComplete }) 
                 </div>
                 <div className="mt-4 space-y-3 text-gray-700">
                   <div>
-                    <p className="font-semibold">Step 1: Find a common denominator</p>
-                    <p>4 and 6 → The LCM is 12</p>
+                    <p className="font-semibold">Step 1: Find a number that both denominators can go into</p>
+                    <p>The denominators are 4 and 6. We need a number that both 4 and 6 can divide evenly into.</p>
+                    <p>Let's try: 4, 8, 12... and 6, 12... Yes! <strong>12</strong> works for both!</p>
                   </div>
                   <div>
-                    <p className="font-semibold">Step 2: Convert both fractions</p>
-                    <p>3/4 = (3 × 3)/(4 × 3) = <strong>9/12</strong></p>
-                    <p>5/6 = (5 × 2)/(6 × 2) = <strong>10/12</strong></p>
+                    <p className="font-semibold">Step 2: Change both fractions to use 12 as the denominator</p>
+                    <p>To change 3/4: What number times 4 equals 12? That's 3! So we multiply: 3/4 = (3 × 3)/(4 × 3) = <strong>9/12</strong></p>
+                    <p>To change 5/6: What number times 6 equals 12? That's 2! So we multiply: 5/6 = (5 × 2)/(6 × 2) = <strong>10/12</strong></p>
                   </div>
                   <div>
-                    <p className="font-semibold">Step 3: Compare numerators</p>
-                    <p>Since 9 &lt; 10, we have: <strong>3/4 &lt; 5/6</strong></p>
+                    <p className="font-semibold">Step 3: Now we can compare!</p>
+                    <p>Since both fractions now have the same denominator (12), we just compare the top numbers (numerators).</p>
+                    <p>9 is less than 10, so: <strong>9/12 &lt; 10/12</strong></p>
+                    <p>That means: <strong>3/4 &lt; 5/6</strong></p>
                   </div>
-                  <p className="text-sm text-gray-600 mt-2">💡 The pie charts visually show that 5/6 fills more of the circle than 3/4!</p>
+                  <p className="text-sm text-gray-600 mt-2">💡 Look at the pie charts! You can see that 5/6 fills more of the circle than 3/4!</p>
                 </div>
               </div>
             )}
@@ -107,7 +110,7 @@ export const Instruction: React.FC<InstructionProps> = ({ method, onComplete }) 
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-gray-800">Method 3: Cross-Multiplication</h3>
             <p className="text-lg text-gray-700">
-              Multiply diagonally across and compare the products.
+              Multiply the numbers across from each other (diagonally) and compare the answers.
             </p>
             
             {step >= 1 && (
@@ -121,20 +124,20 @@ export const Instruction: React.FC<InstructionProps> = ({ method, onComplete }) 
                 </div>
                 <div className="mt-4 space-y-3 text-gray-700">
                   <div>
-                    <p className="font-semibold">Step 1: Cross-multiply</p>
+                    <p className="font-semibold">Step 1: Multiply across (diagonally)</p>
                     <div className="bg-white p-3 rounded border">
                       <p className="font-mono text-lg">
                         2/5 ? 3/7
                       </p>
-                      <p className="mt-2">2 × 7 = <strong>14</strong> (left fraction)</p>
-                      <p>3 × 5 = <strong>15</strong> (right fraction)</p>
+                      <p className="mt-2">For the left fraction (2/5): Multiply 2 × 7 = <strong>14</strong></p>
+                      <p>For the right fraction (3/7): Multiply 3 × 5 = <strong>15</strong></p>
                     </div>
                   </div>
                   <div>
-                    <p className="font-semibold">Step 2: Compare the products</p>
-                    <p>Since 14 &lt; 15, we have: <strong>2/5 &lt; 3/7</strong></p>
+                    <p className="font-semibold">Step 2: Compare your answers</p>
+                    <p>We got 14 and 15. Since 14 is less than 15, we know: <strong>2/5 &lt; 3/7</strong></p>
                     <p className="text-sm text-gray-600 mt-2">
-                      Rule: If left product &lt; right product, then left fraction &lt; right fraction
+                      <strong>Remember:</strong> The smaller answer means the smaller fraction!
                     </p>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">💡 Both visual guides (number line and pie charts) confirm that 2/5 is smaller than 3/7!</p>
@@ -145,7 +148,7 @@ export const Instruction: React.FC<InstructionProps> = ({ method, onComplete }) 
             {step >= 2 && (
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Remember:</strong> Cross-multiplication works because you're comparing a/b with c/d by comparing a×d with b×c.
+                  <strong>Remember:</strong> When you multiply across, the smaller answer tells you which fraction is smaller!
                 </p>
               </div>
             )}

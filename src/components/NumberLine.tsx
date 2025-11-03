@@ -6,13 +6,15 @@ interface NumberLineProps {
   fraction2: Fraction;
   width?: number;
   height?: number;
+  showDecimals?: boolean; // If false, hides decimal values that reveal the answer
 }
 
 export const NumberLine: React.FC<NumberLineProps> = ({ 
   fraction1, 
   fraction2, 
   width = 600, 
-  height = 150 
+  height = 150,
+  showDecimals = true 
 }) => {
   const value1 = toDecimal(fraction1);
   const value2 = toDecimal(fraction2);
@@ -113,14 +115,16 @@ export const NumberLine: React.FC<NumberLineProps> = ({
         >
           {formatFraction(fraction1)}
         </text>
-        <text
-          x={position1}
-          y={lineY + 45}
-          textAnchor="middle"
-          className="text-xs fill-gray-600"
-        >
-          {value1.toFixed(2)}
-        </text>
+        {showDecimals && (
+          <text
+            x={position1}
+            y={lineY + 45}
+            textAnchor="middle"
+            className="text-xs fill-gray-600"
+          >
+            {value1.toFixed(2)}
+          </text>
+        )}
         
         {/* Fraction 2 marker */}
         <circle
@@ -139,14 +143,16 @@ export const NumberLine: React.FC<NumberLineProps> = ({
         >
           {formatFraction(fraction2)}
         </text>
-        <text
-          x={position2}
-          y={lineY + 45}
-          textAnchor="middle"
-          className="text-xs fill-gray-600"
-        >
-          {value2.toFixed(2)}
-        </text>
+        {showDecimals && (
+          <text
+            x={position2}
+            y={lineY + 45}
+            textAnchor="middle"
+            className="text-xs fill-gray-600"
+          >
+            {value2.toFixed(2)}
+          </text>
+        )}
       </svg>
     </div>
   );

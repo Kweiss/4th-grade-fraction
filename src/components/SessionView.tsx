@@ -118,7 +118,7 @@ export const SessionView: React.FC<SessionViewProps> = ({
               Session {sessionNumber}: Learning to Compare Fractions
             </h1>
             <p className="text-gray-600">
-              Method {currentMethodIndex + 1} of {METHODS.length}: {METHODS[currentMethodIndex].replace('-', ' ')}
+              Learning Method {currentMethodIndex + 1} of {METHODS.length}
             </p>
           </div>
           <Instruction 
@@ -139,7 +139,7 @@ export const SessionView: React.FC<SessionViewProps> = ({
               Session {sessionNumber}: Practice Time
             </h1>
             <p className="text-gray-600">
-              Complete 10 exercises. Aim for 80-85% accuracy!
+              Complete 10 practice problems. Try your best!
             </p>
           </div>
           <AdaptivePractice
@@ -162,7 +162,7 @@ export const SessionView: React.FC<SessionViewProps> = ({
               Session {sessionNumber}: Mastery Assessment
             </h1>
             <p className="text-gray-600">
-              Score ≥90% to pass. Show your work for each problem!
+              Get 90% or higher to pass! Make sure to show your work on each problem.
             </p>
           </div>
           <MasteryAssessment
@@ -184,11 +184,11 @@ export const SessionView: React.FC<SessionViewProps> = ({
               More Practice Needed
             </h2>
             <p className="text-lg text-gray-600 mb-4">
-              You scored {session.quizScore?.toFixed(0)}%. To pass, you need ≥90%.
+              You got {session.quizScore?.toFixed(0)}% correct. To pass, you need to get 90% or higher.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mb-6">
               <p className="text-gray-700">
-                <strong>Automatic Re-teaching:</strong> Let's review the concepts again and practice more.
+                <strong>No worries!</strong> Let's go back and review what we learned, then practice some more.
               </p>
             </div>
             <button
@@ -217,14 +217,14 @@ export const SessionView: React.FC<SessionViewProps> = ({
               Session {sessionNumber} Complete!
             </h2>
             <p className="text-lg text-gray-600 mb-4">
-              Great job! You scored {session.quizScore?.toFixed(0)}% on the assessment.
+              Great job! You got {session.quizScore?.toFixed(0)}% correct on the test!
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg">
               <div className="text-2xl font-bold text-blue-600">{session.quizScore?.toFixed(0)}%</div>
-              <div className="text-sm text-gray-600">Quiz Score</div>
+              <div className="text-sm text-gray-600">Test Score</div>
             </div>
             <div className="bg-green-50 p-4 rounded-lg">
               <div className="text-2xl font-bold text-green-600">{duration} min</div>
@@ -232,7 +232,7 @@ export const SessionView: React.FC<SessionViewProps> = ({
             </div>
             <div className="bg-purple-50 p-4 rounded-lg">
               <div className="text-2xl font-bold text-purple-600">{session.exercises.length}</div>
-              <div className="text-sm text-gray-600">Exercises Completed</div>
+              <div className="text-sm text-gray-600">Problems Solved</div>
             </div>
           </div>
 

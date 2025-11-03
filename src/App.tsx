@@ -55,13 +55,13 @@ function App() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            Fraction Comparison Mastery
+            4th Grade fraction example work exercise - kbw
           </h1>
           <p className="text-xl text-gray-600 mb-2">
-            Learn to compare fractions using three powerful methods
+            Learn to compare fractions using three easy methods
           </p>
           <p className="text-lg text-gray-500">
-            Interactive lessons • Adaptive practice • Mastery assessments
+            Fun lessons with pictures • Practice problems • Final tests
           </p>
         </div>
 
@@ -71,29 +71,29 @@ function App() {
             <div className="flex items-start">
               <span className="text-2xl mr-3">📚</span>
               <div>
-                <h3 className="font-semibold text-lg mb-1">5 Structured Sessions</h3>
-                <p>Each session includes direct instruction, adaptive practice, and a mastery assessment.</p>
+                <h3 className="font-semibold text-lg mb-1">5 Learning Sessions</h3>
+                <p>Each session teaches you how to compare fractions, then you practice, and finally take a test.</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="text-2xl mr-3">🎯</span>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Three Comparison Methods</h3>
-                <p>Learn benchmarks (0, ½, 1), common denominators, and cross-multiplication.</p>
+                <h3 className="font-semibold text-lg mb-1">Three Ways to Compare</h3>
+                <p>Learn to use benchmarks (0, ½, 1), make the bottom numbers the same, or multiply across.</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="text-2xl mr-3">🧠</span>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Adaptive Practice</h3>
-                <p>Exercises adjust difficulty based on your performance to keep you in the 80-85% accuracy zone.</p>
+                <h3 className="font-semibold text-lg mb-1">Practice That Helps You Learn</h3>
+                <p>The practice problems get harder or easier based on how you're doing, so you're always learning!</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="text-2xl mr-3">✓</span>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Mastery Assessments</h3>
-                <p>Score ≥90% to pass. Automatic re-teaching if you need more practice.</p>
+                <h3 className="font-semibold text-lg mb-1">Final Tests</h3>
+                <p>Get 90% or higher to pass! If you need more help, we'll review and practice together.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -142,7 +142,7 @@ function App() {
               onClick={() => setView('metrics')}
               className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
             >
-              View Analytics Dashboard
+              See How You're Doing
             </button>
           </div>
         </div>

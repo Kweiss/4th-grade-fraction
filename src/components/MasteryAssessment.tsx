@@ -69,7 +69,7 @@ export const MasteryAssessment: React.FC<MasteryAssessmentProps> = ({
 
   const handleSubmit = () => {
     if (!currentExercise || !selectedAnswer || !justification.trim()) {
-      alert('Please select an answer and provide a justification. Both are required for the assessment.');
+      alert('Please pick an answer and show your work! Both are needed to complete this question.');
       return;
     }
 
@@ -129,9 +129,9 @@ export const MasteryAssessment: React.FC<MasteryAssessmentProps> = ({
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-2xl font-bold text-gray-800">Mastery Assessment</h2>
+          <h2 className="text-2xl font-bold text-gray-800">Final Test</h2>
           <div className="text-sm text-gray-600">
-            Question {currentIndex + 1} of {QUIZ_EXERCISE_COUNT} | Current Score: {currentScore.toFixed(0)}%
+            Question {currentIndex + 1} of {QUIZ_EXERCISE_COUNT} | Your score so far: {currentScore.toFixed(0)}%
           </div>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -143,7 +143,7 @@ export const MasteryAssessment: React.FC<MasteryAssessmentProps> = ({
           />
         </div>
         <div className="mt-2 text-sm text-gray-600">
-          <strong>Goal:</strong> Score ≥{MASTERY_THRESHOLD}% to pass
+          <strong>Goal:</strong> Get {MASTERY_THRESHOLD}% or higher to pass this test!
         </div>
       </div>
 
@@ -152,10 +152,10 @@ export const MasteryAssessment: React.FC<MasteryAssessmentProps> = ({
           Compare: {formatFraction(currentExercise.fraction1)} ? {formatFraction(currentExercise.fraction2)}
         </h3>
         <div className="mb-4">
-          <NumberLine fraction1={currentExercise.fraction1} fraction2={currentExercise.fraction2} />
+          <NumberLine fraction1={currentExercise.fraction1} fraction2={currentExercise.fraction2} showDecimals={false} />
         </div>
         <div className="mb-4">
-          <PieChart fraction1={currentExercise.fraction1} fraction2={currentExercise.fraction2} />
+          <PieChart fraction1={currentExercise.fraction1} fraction2={currentExercise.fraction2} showComparison={false} />
         </div>
       </div>
 
@@ -199,18 +199,18 @@ export const MasteryAssessment: React.FC<MasteryAssessmentProps> = ({
 
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          <strong>Required:</strong> Explain your answer with justification:
+          <strong>Required:</strong> Show your work and explain how you got your answer:
         </label>
         <textarea
           value={justification}
           onChange={(e) => !showFeedback && setJustification(e.target.value)}
           disabled={showFeedback}
-          placeholder="Provide a clear explanation of how you compared these fractions. For example: 'I used common denominators. 3/4 = 9/12 and 5/6 = 10/12, so 3/4 < 5/6.'"
+          placeholder="Show how you compared these fractions. For example: 'I made the bottom numbers the same. 3/4 = 9/12 and 5/6 = 10/12. Since 9 is less than 10, I know 3/4 is less than 5/6.'"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
           rows={4}
         />
         <p className="text-xs text-gray-500 mt-1">
-          Your justification must show your reasoning process.
+          Make sure to show your steps so we can see how you solved it!
         </p>
       </div>
 

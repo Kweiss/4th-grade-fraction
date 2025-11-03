@@ -5,12 +5,14 @@ interface PieChartProps {
   fraction1: Fraction;
   fraction2: Fraction;
   size?: number;
+  showComparison?: boolean; // If false, hides the answer comparison (for practice exercises)
 }
 
 export const PieChart: React.FC<PieChartProps> = ({ 
   fraction1, 
   fraction2, 
-  size = 200 
+  size = 200,
+  showComparison = true 
 }) => {
   const value1 = toDecimal(fraction1);
   const value2 = toDecimal(fraction2);
@@ -115,18 +117,31 @@ export const PieChart: React.FC<PieChartProps> = ({
         </div>
       </div>
       
-      {/* Comparison indicator */}
-      <div className="flex items-center space-x-2 text-lg font-semibold text-gray-700">
-        <span className={`px-3 py-1 rounded ${value1 < value2 ? 'bg-red-100 text-red-700' : value1 > value2 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
-          {formatFraction(fraction1)}
-        </span>
-        <span className="text-gray-500">
-          {value1 < value2 ? '<' : value1 > value2 ? '>' : '='}
-        </span>
-        <span className={`px-3 py-1 rounded ${value2 < value1 ? 'bg-red-100 text-red-700' : value2 > value1 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
-          {formatFraction(fraction2)}
-        </span>
-      </div>
+      {/* Comparison indicator - only show if showComparison is true */}
+      {showComparison && (
+        <div className="flex items-center space-x-2 text-lg font-semibold text-gray-700">
+          <span className={`px-3 py-1 rounded ${value1 < value2 ? 'bg-red-100 text-red-700' : value1 > value2 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
+            {formatFraction(fraction1)}
+          </span>
+          <span className="text-gray-500">
+            {value1 < value2 ? '<' : value1 > value2 ? '>' : '='}
+          </span>
+          <span className={`px-3 py-1 rounded ${value2 < value1 ? 'bg-red-100 text-red-700' : value2 > value1 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
+            {formatFraction(fraction2)}
+          </span>
+        </div>
+      )}
+      {!showComparison && (
+        <div className="flex items-center space-x-2 text-lg font-semibold text-gray-700">
+          <span className="px-3 py-1 rounded bg-gray-100 text-gray-700">
+            {formatFraction(fraction1)}
+          </span>
+          <span className="text-gray-500">?</span>
+          <span className="px-3 py-1 rounded bg-gray-100 text-gray-700">
+            {formatFraction(fraction2)}
+          </span>
+        </div>
+      )}
     </div>
   );
 };
