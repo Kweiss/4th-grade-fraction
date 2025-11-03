@@ -86,10 +86,29 @@ export const SessionView: React.FC<SessionViewProps> = ({
     saveSession(updatedSession);
 
     if (passed) {
-      // Update progress
+      // Update progress - only add this specific session if not already completed
       const progress = getOrInitializeProgress();
-      progress.completedSessions.push(sessionNumber);
-      progress.currentSession = Math.max(progress.currentSession, sessionNumber + 1);
+      
+      // Clean up: ensure completedSessions only contains valid, unique session numbers
+      const validCompleted = progress.completedSessions
+        .filter((s: number) => s >= 1 && s <= 5)
+        .filter((s: number, index: number, arr: number[]) => arr.indexOf(s) === index);
+      
+      // Add this session if not already in the list
+      if (!validCompleted.includes(sessionNumber)) {
+        validCompleted.push(sessionNumber);
+      }
+      
+      // Sort to keep them in order
+      validCompleted.sort((a: number, b: number) => a - b);
+      
+      progress.completedSessions = validCompleted;
+      
+      // Set current session to the next uncompleted session
+      // If all sessions 1-5 are completed, set to 6 (which will show completion screen)
+      const maxCompleted = validCompleted.length > 0 ? Math.max(...validCompleted) : 0;
+      progress.currentSession = Math.min(maxCompleted + 1, 6);
+      
       saveProgress(progress);
       
       setPhase('complete');

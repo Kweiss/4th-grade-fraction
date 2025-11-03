@@ -8,6 +8,9 @@ type AppView = 'home' | 'session' | 'metrics';
 function App() {
   const [view, setView] = useState<AppView>('home');
   const [currentSession, setCurrentSession] = useState(1);
+  const [progressKey, setProgressKey] = useState(0); // Force re-render when progress updates
+  
+  // Reload progress whenever view changes to home
   const progress = getOrInitializeProgress();
 
   useEffect(() => {
@@ -17,14 +20,34 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Reload progress when returning to home view
+  useEffect(() => {
+    if (view === 'home') {
+      const latestProgress = getOrInitializeProgress();
+      if (latestProgress.currentSession > 1) {
+        setCurrentSession(latestProgress.currentSession);
+      }
+      // Force component re-render to show updated progress
+      setProgressKey(prev => prev + 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view]);
+
   const handleStartSession = (sessionNumber: number) => {
     setCurrentSession(sessionNumber);
     setView('session');
   };
 
   const handleSessionComplete = () => {
-    if (currentSession < 5) {
-      setCurrentSession(currentSession + 1);
+    // Reload progress from storage to get latest completion status
+    const updatedProgress = getOrInitializeProgress();
+    
+    // Force progress reload by updating key
+    setProgressKey(prev => prev + 1);
+    
+    if (updatedProgress.currentSession <= 5) {
+      setCurrentSession(updatedProgress.currentSession);
+      setView('home'); // Return to home to see updated progress
     } else {
       setView('metrics');
     }
@@ -110,9 +133,11 @@ function App() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Progress</h2>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
             {[1, 2, 3, 4, 5].map((sessionNum) => {
-              const isCompleted = progress.completedSessions.includes(sessionNum);
-              const isCurrent = progress.currentSession === sessionNum;
-              const isLocked = sessionNum > progress.currentSession;
+              // Reload progress fresh each time to ensure accuracy
+              const currentProgress = getOrInitializeProgress();
+              const isCompleted = currentProgress.completedSessions.includes(sessionNum);
+              const isCurrent = currentProgress.currentSession === sessionNum;
+              const isLocked = sessionNum > currentProgress.currentSession;
 
               return (
                 <button
@@ -147,20 +172,26 @@ function App() {
           </div>
         </div>
 
-        {progress.currentSession > 1 && (
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
-            <h3 className="font-semibold text-blue-900 mb-2">Ready to Continue?</h3>
-            <p className="text-blue-800 mb-4">
-              You're on Session {progress.currentSession}. Click the session card above to continue your learning journey!
-            </p>
-            <button
-              onClick={() => handleStartSession(progress.currentSession)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Continue Session {progress.currentSession}
-            </button>
-          </div>
-        )}
+        {(() => {
+          const currentProgress = getOrInitializeProgress();
+          if (currentProgress.currentSession > 1) {
+            return (
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
+                <h3 className="font-semibold text-blue-900 mb-2">Ready to Continue?</h3>
+                <p className="text-blue-800 mb-4">
+                  You're on Session {currentProgress.currentSession}. Click the session card above to continue your learning journey!
+                </p>
+                <button
+                  onClick={() => handleStartSession(currentProgress.currentSession)}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Continue Session {currentProgress.currentSession}
+                </button>
+              </div>
+            );
+          }
+          return null;
+        })()}
       </div>
     </div>
   );
