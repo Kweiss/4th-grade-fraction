@@ -1,46 +1,154 @@
-# Getting Started with Create React App
+# 4th Grade Fraction Comparison Mastery
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive educational web application designed to teach 4th-grade students how to compare fractions using three evidence-based methods: benchmarks, common denominators, and cross-multiplication.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Core Functionality
 
-### `npm start`
+- **5 Structured Sessions**: Each session includes direct instruction, adaptive practice, and mastery assessment
+- **Three Comparison Methods**: 
+  - Benchmarks (0, ½, 1)
+  - Common Denominators
+  - Cross-Multiplication
+- **Interactive Number Lines**: Visual representations to aid understanding
+- **Adaptive Practice**: Difficulty adjusts dynamically to maintain 80-85% accuracy
+- **Mastery Assessments**: 12-problem quizzes requiring ≥90% to pass with justifications
+- **Automatic Re-teaching**: If assessment threshold not met, system provides review
+- **Spaced Repetition**: Incorporates previous material in later sessions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Metrics & Analytics
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application tracks three key success metrics:
 
-### `npm test`
+1. **Mastery Rate**: % of students achieving ≥90% by session 5
+   - Success: ≥75%
+   - Failure: <50%
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Error Reduction**: Session-to-session error rate reduction
+   - Success: ≥40% reduction
+   - Failure: <20% reduction
 
-### `npm run build`
+3. **Engagement Efficiency**: % of sessions completed in 30-60 minutes
+   - Success: ≥90%
+   - Failure: <70%
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technology Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React 19** with TypeScript
+- **Tailwind CSS** for styling
+- **React Router DOM** for navigation
+- **LocalStorage** for data persistence
+- **SVG** for interactive number line visualizations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Node.js (v14 or higher)
+- npm or yarn
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd 4th-grade-fractions
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Install dependencies:
+```bash
+npm install
+```
 
-## Learn More
+3. Start the development server:
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application will open at `http://localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Building for Production
+
+```bash
+npm run build
+```
+
+The optimized production build will be in the `build` folder.
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── AdaptivePractice.tsx      # Adaptive practice exercises
+│   ├── Instruction.tsx           # Direct instruction lessons
+│   ├── MasteryAssessment.tsx     # End-of-session quizzes
+│   ├── MetricsDashboard.tsx      # Analytics dashboard
+│   ├── NumberLine.tsx            # Interactive number line visualization
+│   └── SessionView.tsx           # Session orchestrator
+├── types/              # TypeScript type definitions
+│   └── index.ts
+├── utils/              # Utility functions
+│   ├── fractionUtils.ts         # Fraction math and generation
+│   └── storage.ts               # LocalStorage management and metrics
+├── App.tsx             # Main application component
+└── index.tsx           # Application entry point
+```
+
+## How It Works
+
+### Session Flow
+
+1. **Instruction Phase**: Students learn one comparison method at a time through interactive examples
+2. **Practice Phase**: 10 adaptive exercises adjust difficulty to maintain optimal challenge
+3. **Assessment Phase**: 12-problem quiz requiring ≥90% accuracy with justifications
+4. **Re-teaching**: If assessment not passed, system provides review and retry opportunity
+
+### Adaptive Difficulty
+
+The system adjusts exercise difficulty based on recent performance:
+- If accuracy > target + 5%, difficulty increases
+- If accuracy < target - 10%, difficulty decreases
+- Maintains optimal challenge zone for learning
+
+### Data Persistence
+
+All progress, sessions, and metrics are stored in browser localStorage:
+- Session data persists across page reloads
+- Progress tracking enables continuation
+- Analytics computed from stored session history
+
+## Educational Principles
+
+This application follows evidence-based educational practices:
+
+- **Explicit Instruction**: Direct teaching of comparison methods with worked examples
+- **Scaffolded Learning**: Gradual introduction of concepts with support
+- **Mastery Learning**: Requires demonstrated proficiency before progression
+- **Spaced Practice**: Incorporates review of previous concepts
+- **Immediate Feedback**: Instant correction and explanation
+
+## Common Core Alignment
+
+Aligns with Common Core State Standards:
+- 4.NF.A.2: Compare two fractions with different numerators and denominators
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+[Specify your license here]
+
+## Contributing
+
+[Contributing guidelines if applicable]
+
+## Acknowledgments
+
+Built with evidence-based pedagogical principles for effective fraction instruction.
